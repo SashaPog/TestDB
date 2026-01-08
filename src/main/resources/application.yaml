@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: "DBTest"
+
+  datasource:
+    url: "jdbc:postgresql://localhost:5432/newjwtsecurity"
+    username: "postgres"
+    password: "postgres"
+
+  jpa:
+    show-sql: true
+    open-in-view: false
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        format_sql: true
+        order_updates: true
+        order_inserts: true
+        jdbc:
+          batch_size: 50
