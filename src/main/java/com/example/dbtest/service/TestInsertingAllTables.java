@@ -23,18 +23,25 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @RequiredArgsConstructor
 public class TestInsertingAllTables {
+    private static final int BATCH_SIZE = 50;
     private final EntityManager em;
     private final UserRepositoryJpa jpa;
+
+    //public void insertAllData(int userCount,
+    //                              int competitionCount,
+    //                              int tasksPerCompetition,
+    //                              int submissionsPerTask,
+    //                              int evaluationsPerSubmission
 
     @Transactional
     public void insertAllData(int count) {
         int batchSize = 50;
 
         // ========================
-        // Users
+        // 1️⃣ Users
         // ========================
         List<User> users = new ArrayList<>();
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < 1; i++) {
             User user = User.builder()
                 .uuid(UUID.randomUUID().toString())
                 .email("email" + UUID.randomUUID() + "@gmail.com")
@@ -57,10 +64,10 @@ public class TestInsertingAllTables {
         em.clear();
 
         // ========================
-        // Competitions
+        // 2️⃣ Competitions
         // ========================
         List<Competition> competitions = new ArrayList<>();
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < 1; i++) {
             Competition competition = Competition.builder()
                 .name("Competition " + i)
                 .level(CompetitionLevel.CITY)
@@ -69,9 +76,10 @@ public class TestInsertingAllTables {
                 .endAt(ZonedDateTime.now().plusDays(30))
                 .build();
 
+            // Додаємо користувачів до конкурсу
             for (int j = 0; j < Math.min(5, users.size()); j++) {
                 User u = users.get((i + j) % users.size());
-                competition.addUser(u);
+                competition.addUser(u); // ManyToMany
             }
 
             em.persist(competition);
@@ -86,7 +94,7 @@ public class TestInsertingAllTables {
         em.clear();
 
         // ========================
-        // News
+        // 3️⃣ News
         // ========================
         for (int i = 0; i < users.size(); i++) {
             User u = users.get(i);
@@ -107,11 +115,11 @@ public class TestInsertingAllTables {
         em.clear();
 
         // ========================
-        // Tasks
+        // 4️⃣ Tasks
         // ========================
         List<Task> tasks = new ArrayList<>();
         for (Competition competition : competitions) {
-            for (int t = 0; t < count; t++) {
+            for (int t = 0; t < 20000; t++) {
                 User author = users.get((t + competition.getId().intValue()) % users.size());
                 Task task = Task.builder()
                     .title("Task " + t + " for " + competition.getName())
@@ -133,11 +141,11 @@ public class TestInsertingAllTables {
         em.clear();
 
         // ========================
-        // Submissions
+        // 5️⃣ Submissions
         // ========================
         List<Submission> submissions = new ArrayList<>();
         for (Task task : tasks) {
-            for (int s = 0; s < count; s++) {
+            for (int s = 0; s < 2; s++) {
                 User user = users.get((s + task.getId().intValue()) % users.size());
                 Submission submission = Submission.builder()
                     .fileUrl("submission" + s + ".txt")
@@ -159,10 +167,10 @@ public class TestInsertingAllTables {
         em.clear();
 
         // ========================
-        // Evaluations
+        // 6️⃣ Evaluations
         // ========================
         for (Submission submission : submissions) {
-            for (int e = 0; e < count; e++) {
+            for (int e = 0; e < 2; e++) {
                 User jury = users.get((e + submission.getId().intValue()) % users.size());
                 Evaluation evaluation = Evaluation.builder()
                     .score((int) (Math.random() * 100))

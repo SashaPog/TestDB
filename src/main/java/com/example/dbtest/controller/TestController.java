@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("api/v1/test")
+//@APIVersion(1)
 @RequiredArgsConstructor
 public class TestController {
     private final TestPersistService service;

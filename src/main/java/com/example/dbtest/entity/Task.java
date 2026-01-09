@@ -43,11 +43,11 @@ public class Task {
     @Column(name = "file_url")
     private String fileUrl;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "author_id", nullable = false)
     private User author;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "competition_id", nullable = false)
     private Competition competition;
 
