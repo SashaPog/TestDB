@@ -5,7 +5,7 @@ spring:
 # newjwtsecurity
 # dbtest
   datasource:
-    url: "jdbc:postgresql://localhost:5432/dbtest2"
+    url: "jdbc:postgresql://localhost:5432/dbtest"
     username: "postgres"
     password: "postgres"
 
@@ -13,7 +13,7 @@ spring:
 #    show-sql: true
     open-in-view: false
     hibernate:
-#      ddl-auto: create
+      ddl-auto: update
     properties:
       hibernate:
         format_sql: true

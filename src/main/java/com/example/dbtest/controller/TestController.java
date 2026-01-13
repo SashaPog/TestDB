@@ -1,6 +1,8 @@
 package com.example.dbtest.controller;
 
+import com.example.dbtest.entity.Chat;
 import com.example.dbtest.entity.User;
+import com.example.dbtest.jparepository.ChatRepositoryJpa;
 import com.example.dbtest.service.TestInsertingAllTables;
 import com.example.dbtest.service.TestPersistService;
 import com.example.dbtest.service.TestSelect;
@@ -22,6 +24,7 @@ public class TestController {
     private final TestInsertingAllTables allDataService;
     private final TestSelect select;
     private final TestSelect testSelect;
+    private final ChatRepositoryJpa jpa;
 
     @PostMapping("/users/{count}")
     public String insert (@PathVariable int count) {
@@ -48,4 +51,15 @@ public class TestController {
         return testSelect.getUsersEntityGraph(start, end);
 
     }
+
+//    @GetMapping("/{comId}/{taskId}/{partId}/{respId}")
+//    public String insertChat (@PathVariable Long comId, @PathVariable Long taskId, @PathVariable Long partId, @PathVariable Long respId ) {
+//        Chat chat = Chat.builder()
+//            .competition(comId)
+//            .task(taskId)
+//            .participant(partId)
+//            .respondent(respId)
+//            .build();
+//        jpa.save(chat);
+//    }
 }

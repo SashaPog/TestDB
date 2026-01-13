@@ -1,6 +1,7 @@
 package com.example.dbtest.entity;
 
 import com.example.dbtest.enums.CompetitionLevel;
+import com.example.dbtest.enums.CompetitionStatus;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -47,6 +48,10 @@ public class Competition {
     @Enumerated(EnumType.STRING)
     @Column(name = "level", nullable = false)
     private CompetitionLevel level;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "competition_status")
+    private CompetitionStatus competitionStatus;
 
     @Column(name = "year", nullable = false)
     private Integer year;

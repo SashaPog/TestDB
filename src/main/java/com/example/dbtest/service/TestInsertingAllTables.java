@@ -47,6 +47,7 @@ public class TestInsertingAllTables {
                 .email("email" + UUID.randomUUID() + "@gmail.com")
                 .password("pass" + i)
                 .firstName("first" + i)
+                .middleName("middle" + i)
                 .lastName("last" + i)
                 .role(Role.USER)
                 .userStatus(UserStatus.ACTIVATED)
