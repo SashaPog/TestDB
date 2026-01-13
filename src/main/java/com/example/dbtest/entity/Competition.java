@@ -1,6 +1,7 @@
 package com.example.dbtest.entity;
 
 import com.example.dbtest.enums.CompetitionLevel;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -58,6 +59,7 @@ public class Competition {
 
     @Builder.Default
     @Setter(AccessLevel.PRIVATE)
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
         name = "user_competitions",
@@ -67,6 +69,7 @@ public class Competition {
     private List<User> users = new ArrayList<>();
 
     @Builder.Default
+    @JsonIgnore
     @OneToMany(mappedBy = "competition", fetch = FetchType.LAZY)
     private List<Task> tasks = new ArrayList<>();
 

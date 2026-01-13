@@ -32,7 +32,7 @@ public class TaskServiceImpl {
 
         for (Task task : tasks) {
             List<Submission> submissions = task.getSubmissions();
-            log.warn("Get N+1 Submission");
+//            log.warn("Get N+1 Submission");
             List<SubmissionDto> subDtoList = new ArrayList<>();
 
             for (Submission sub : submissions) {

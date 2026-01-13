@@ -24,6 +24,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.BatchSize;
 
 @Entity
 @Table(name = "users")
@@ -74,10 +75,12 @@ public class User {
 
     @Builder.Default
     @Setter(AccessLevel.PRIVATE)
+//    @BatchSize(size = 50)
     @ManyToMany(mappedBy = "users", fetch = FetchType.LAZY)
     private List<Competition> competitions = new ArrayList<>();
 
     @Builder.Default
+//    @BatchSize(size = 50)
     @OneToMany(mappedBy = "author", fetch = FetchType.LAZY)
     private List<Task> tasks = new ArrayList<>();
 

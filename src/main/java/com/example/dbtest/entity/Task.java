@@ -1,5 +1,6 @@
 package com.example.dbtest.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -44,14 +45,17 @@ public class Task {
     private String fileUrl;
 
     @ManyToOne(optional = false)
+    @JsonIgnore
     @JoinColumn(name = "author_id", nullable = false)
     private User author;
 
     @ManyToOne(optional = false)
+    @JsonIgnore
     @JoinColumn(name = "competition_id", nullable = false)
     private Competition competition;
 
     @Builder.Default
+    @JsonIgnore
     @OneToMany(mappedBy = "task", fetch = FetchType.LAZY)
     List<Submission> submissions = new ArrayList<>();
 }

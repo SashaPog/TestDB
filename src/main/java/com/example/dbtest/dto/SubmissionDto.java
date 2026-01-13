@@ -1,6 +1,7 @@
 package com.example.dbtest.dto;
 
 import java.time.Instant;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,5 +15,6 @@ public class SubmissionDto {
     private String fileUrl;
     private String comment;
     private Instant submittedAt;
+    List<EvaluationDto> evaluations;
 
 }

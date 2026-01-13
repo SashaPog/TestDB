@@ -1,5 +1,6 @@
 package com.example.dbtest.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -42,6 +43,7 @@ public class News {
     private Instant createdAt;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JsonIgnore
     @JoinColumn(name = "created_by", nullable = false)
     private User createdBy;
 }

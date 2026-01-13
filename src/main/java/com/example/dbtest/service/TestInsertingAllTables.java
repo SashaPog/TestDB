@@ -41,7 +41,7 @@ public class TestInsertingAllTables {
         // 1️⃣ Users
         // ========================
         List<User> users = new ArrayList<>();
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < count; i++) {
             User user = User.builder()
                 .uuid(UUID.randomUUID().toString())
                 .email("email" + UUID.randomUUID() + "@gmail.com")
@@ -67,7 +67,7 @@ public class TestInsertingAllTables {
         // 2️⃣ Competitions
         // ========================
         List<Competition> competitions = new ArrayList<>();
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < count; i++) {
             Competition competition = Competition.builder()
                 .name("Competition " + i)
                 .level(CompetitionLevel.CITY)
@@ -119,7 +119,7 @@ public class TestInsertingAllTables {
         // ========================
         List<Task> tasks = new ArrayList<>();
         for (Competition competition : competitions) {
-            for (int t = 0; t < 20000; t++) {
+            for (int t = 0; t < 2; t++) {
                 User author = users.get((t + competition.getId().intValue()) % users.size());
                 Task task = Task.builder()
                     .title("Task " + t + " for " + competition.getName())
@@ -145,7 +145,7 @@ public class TestInsertingAllTables {
         // ========================
         List<Submission> submissions = new ArrayList<>();
         for (Task task : tasks) {
-            for (int s = 0; s < 2; s++) {
+            for (int s = 0; s < 1; s++) {
                 User user = users.get((s + task.getId().intValue()) % users.size());
                 Submission submission = Submission.builder()
                     .fileUrl("submission" + s + ".txt")
